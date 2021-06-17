@@ -353,7 +353,7 @@ function App(props) {
             */}
 
             <Contract
-              name="YourContract"
+              name="TokenFactory"
               signer={userProvider.getSigner()}
               provider={localProvider}
               address={address}

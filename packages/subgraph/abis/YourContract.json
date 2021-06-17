@@ -1,52 +1,47 @@
 [
   {
-    "inputs": [],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
         "indexed": false,
         "internalType": "address",
-        "name": "sender",
+        "name": "_address",
         "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "purpose",
-        "type": "string"
       }
     ],
-    "name": "SetPurpose",
+    "name": "Created",
     "type": "event"
   },
   {
-    "inputs": [],
-    "name": "purpose",
-    "outputs": [
+    "inputs": [
       {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "swagLvl_",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view",
+    "name": "create",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "newPurpose",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "name": "setPurpose",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "name": "deployedContracts",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]
