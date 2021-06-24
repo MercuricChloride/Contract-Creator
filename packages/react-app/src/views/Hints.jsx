@@ -18,6 +18,7 @@ export default function Hints({ yourLocalBalance, mainnetProvider, price, addres
   return (
     <div>
       <div style={{ margin: 32 }}>
+      <h1>Sample text</h1>
       </div>
 
       <div style={{ margin: 32 }}>

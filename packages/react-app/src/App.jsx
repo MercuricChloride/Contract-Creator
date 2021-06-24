@@ -151,6 +151,8 @@ function App(props) {
   // 📟 Listen for broadcast events
   const setPurposeEvents = useEventListener(readContracts, "YourContract", "SetPurpose", localProvider, 1);
 
+  const createdEvent = useEventListener(readContracts, "TokenFactory", "Create", localProvider, 1);
+
   /*
   const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
   console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
@@ -402,6 +404,7 @@ function App(props) {
               readContracts={readContracts}
               purpose={purpose}
               setPurposeEvents={setPurposeEvents}
+              createdEvent={createdEvent}
             />
           </Route>
           <Route path="/mainnetdai">
