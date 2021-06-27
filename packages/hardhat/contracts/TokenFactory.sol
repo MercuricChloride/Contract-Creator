@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract TokenTemplate is ERC20 {
     constructor(uint totalSupply, string memory name, string memory symbol) ERC20(name, symbol) public {
-        _mint(tx.origin, totalSupply);
+        _mint(tx.origin, totalSupply * 10**18);
     }
 }
 
@@ -19,10 +19,9 @@ contract TokenFactory {
     event Create(address _Address, uint TotalSupply, string name, string symbol);
 
     function create(uint totalSupply, string memory name, string memory symbol) public {
-
         TokenTemplate tokenTemplate = new TokenTemplate(totalSupply, name, symbol);
         emit Create(address(tokenTemplate), totalSupply, name, symbol);
-        console.log(totalSupply, name, symbol);
+        console.log(totalSupply* 10**18, name, symbol);
     }
 
 }
