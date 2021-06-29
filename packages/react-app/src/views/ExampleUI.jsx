@@ -8,8 +8,6 @@ import { Address, Balance } from "../components";
 import { EventListener } from "../hooks";
 
 export default function ExampleUI({
-  purpose,
-  setPurposeEvents,
   address,
   mainnetProvider,
   localProvider,
@@ -25,14 +23,16 @@ export default function ExampleUI({
 
     const listCreate = createdEvent.map((index) => 
         <div>
+        <Col>
         <li><h3>Token Name: {index[1]}</h3></li>
         <li><h3>Token ABV: {index[2]}</h3></li>
+        <li>Total Supply: {index[3]}</li>
         <li><Address 
             address={index[0]}
             ensProvider={mainnetProvider}
             blockExplorer={blockExplorer}
             fontSize={16} /></li>
-        <li>Total Supply: {index[3]}</li>
+        </Col>
         </div>
     );
     const [name, setName] = useState("Placeholder");
@@ -41,19 +41,15 @@ export default function ExampleUI({
     function onFinish() {
         tx(writeContracts.TokenFactory.create(ts, name, abv,))
     }
-    function onFinishFailed() {
-    }
 
   return (
     <div style={{margin: 32}}>
         <div>
-        <Row>
-         <Col span={6} offset={9}>
+        <Row justify="center">
+         <Col span={6}>
           <Card title="Simple ERC-20">
             <Form 
                 name="basic"
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
             >
                 <Form.Item
                 label="Name"
@@ -81,41 +77,32 @@ export default function ExampleUI({
             </Form>
           </Card>
          </Col>
+            <Col span={6} offset={1}>
+              <Card title="Token to be minted">
+                <h3>Name: {name}</h3>
+                <h3>Abbreviation: {abv}</h3>
+                <h3>Total Supply: {ts}</h3>
+              </Card>
+            </Col>
+            <Col span={6} offset={1}>
+                <Card title="Created Tokens">
+                  <Row justify="center">
+                    <List
+                    dataSource={listCreate}
+                      renderItem={listCreate => (
+                          <List.Item>
+                          {listCreate}
+                          </List.Item>
+                      )}
+                       />
+                  </Row>
+                </Card>
+            </Col>
         </Row>
         </div>
-
-        <Divider />
-        
-        <div>
-            <Row>
-                <Col span={6} offset={9}>
-                  <Card title="Token to be minted">
-                    <h3>Name: {name}</h3>
-                    <h3>Abbreviation: {abv}</h3>
-                    <h3>Total Supply: {ts}</h3>
-                  </Card>
-                </Col>
-            </Row>
-        </div>
         
         <Divider />
 
-        <div>
-            <Row>
-                <Col span={6} offset={9}>
-                    <Card title="Created Tokens">
-                        <List
-                        dataSource={listCreate}
-      renderItem={listCreate => (
-          <List.Item>
-          {listCreate}
-          </List.Item>
-      )}
-                        />
-                    </Card>
-                </Col>
-            </Row>
-        </div>
     </div>
 
   );
