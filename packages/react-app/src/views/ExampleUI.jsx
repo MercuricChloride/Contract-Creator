@@ -19,16 +19,27 @@ export default function ExampleUI({
   readContracts,
   writeContracts,
   createdEvent,
+  blockExplorer,
 }) {
     
 
+    const listCreate = createdEvent.map((index) => 
+        <div>
+        <li><h3>Token Name: {index[1]}</h3></li>
+        <li><h3>Token ABV: {index[2]}</h3></li>
+        <li><Address 
+            address={index[0]}
+            ensProvider={mainnetProvider}
+            blockExplorer={blockExplorer}
+            fontSize={16} /></li>
+        <li>Total Supply: {index[3]}</li>
+        </div>
+    );
     const [name, setName] = useState("Placeholder");
     const [abv, setAbv] = useState("AnotherPlaceholder");
     const [ts, setTs] = useState(100);
-    const CreatedEventValues = Object.values(createdEvent);
     function onFinish() {
         tx(writeContracts.TokenFactory.create(ts, name, abv,))
-        console.log(CreatedEventValues);
     }
     function onFinishFailed() {
     }
@@ -93,11 +104,14 @@ export default function ExampleUI({
             <Row>
                 <Col span={6} offset={9}>
                     <Card title="Created Tokens">
-                        <List 
-                        dataSource={createdEvent}
-                      renderItem={item => (
-                        {createdEvents.map(token => <h1>{token.TotalSupply})}
-                      )} />
+                        <List
+                        dataSource={listCreate}
+      renderItem={listCreate => (
+          <List.Item>
+          {listCreate}
+          </List.Item>
+      )}
+                        />
                     </Card>
                 </Col>
             </Row>

@@ -405,6 +405,7 @@ function App(props) {
               purpose={purpose}
               setPurposeEvents={setPurposeEvents}
               createdEvent={createdEvent}
+              blockExplorer={blockExplorer}
             />
           </Route>
           <Route path="/mainnetdai">

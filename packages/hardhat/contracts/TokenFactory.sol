@@ -16,11 +16,10 @@ contract TokenTemplate is ERC20 {
 
 contract TokenFactory {
 
-    event Create(address _Address, uint TotalSupply, string name, string symbol);
-
+    event Create(address _Address, string name, string symbol, uint totalSupply);
     function create(uint totalSupply, string memory name, string memory symbol) public {
         TokenTemplate tokenTemplate = new TokenTemplate(totalSupply, name, symbol);
-        emit Create(address(tokenTemplate), totalSupply, name, symbol);
+        emit Create(address(tokenTemplate), name, symbol, totalSupply);
         console.log(totalSupply* 10**18, name, symbol);
     }
 
