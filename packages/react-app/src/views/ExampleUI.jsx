@@ -24,9 +24,9 @@ export default function ExampleUI({
     const listCreate = createdEvent.map((index) => 
         <div>
         <Col>
-        <li><h3>Token Name: {index[1]}</h3></li>
-        <li><h3>Token ABV: {index[2]}</h3></li>
-        <li>Total Supply: {index[3]}</li>
+        <li><h3><b>Token Name: </b>{index[1]}</h3></li>
+        <li><h3><b>Symbol: </b>{index[2]}</h3></li>
+        <li><h3><b>Total Supply: </b>{index[3]}</h3></li>
         <li><Address 
             address={index[0]}
             ensProvider={mainnetProvider}
@@ -88,7 +88,14 @@ export default function ExampleUI({
                 <Card title="Created Tokens">
                   <Row justify="center">
                     <List
-                    dataSource={listCreate}
+                      dataSource={listCreate}
+                      itemLayout="vertical"
+                      pagination={{
+                          onChange: page=> {
+                              console.log(page);
+                          },
+                            pageSize: 3,
+                      }}
                       renderItem={listCreate => (
                           <List.Item>
                           {listCreate}
